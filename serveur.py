@@ -202,4 +202,4 @@ def analyse():
     score_classification=score_classification)
 if __name__=="__main__":
     keep_alive()
-    app.run (debug='True',host='0.0.0.0',port=3000)
+    app.run (debug='False',host='0.0.0.0',port=3000)
