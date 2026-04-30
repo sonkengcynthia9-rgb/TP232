@@ -8,6 +8,10 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
 import base64
+import os
+import requests
+import threading
+import time
 from sklearn.cluster import KMeans
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler
@@ -53,6 +57,22 @@ def données():
     toutes_donnees = curseur.fetchall()
     connexion.close()
     return render_template('donnees.html', donnees=toutes_donnees)
+    
+def keep_alive():
+    def ping():
+        while True:
+            try:
+                url = os.environ.get(
+                    "RENDER_URL")
+                requests.get(url,timeout=10)
+                print('Ping Reussi')
+            except Exception as e:
+                print('Ping echoue')
+                time.sleep(600)
+    t = threading.Thread(target=ping)
+    t.daemon = True
+    t.start()
+				
 
 @app.route('/analyse')
 def analyse():
@@ -181,4 +201,5 @@ def analyse():
     variance=variance,
     score_classification=score_classification)
 if __name__=="__main__":
+    keep_alive()
     app.run (debug='True',host='0.0.0.0',port=3000)
