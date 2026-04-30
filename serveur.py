@@ -63,7 +63,7 @@ def keep_alive():
         while True:
             try:
                 url = os.environ.get(
-                    "RENDER_URL")
+                    "RENDER_EXTERNAL_URL","https://sonkeng-awoukeng-cynthia-24f2711.onrender.com/")
                 requests.get(url,timeout=10)
                 print('Ping Reussi')
             except Exception as e:
