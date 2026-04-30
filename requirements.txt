@@ -1,8 +1,6 @@
-requests
-flask
-matplotblib
-io
-base64
-sklearn
-threading
-time
+Flask==3.0.0
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.8.4
+scikit-learn==1.4.2
+requests==2.31.0
