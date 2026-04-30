@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --vert-fonce: #1a4731;
+    --vert-moyen: #2d6a4f;
+    --vert-clair: #52b788;
+    --or: #f4a90d;
+    --or-clair: #ffd166;
+    --blanc: #ffffff;
+    --noir: #0a0a0a;
+    --gris: #f8f9fa;
+}
+
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--gris);
+    color: var(--noir);
+}
+
+/* NAVIGATION */
+nav {
+    background: linear-gradient(135deg, var(--vert-fonce), var(--vert-moyen));
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+nav .logo {
+    color: var(--or);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+nav .liens a {
+    color: var(--blanc);
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 15px;
+    font-weight: 400;
+    transition: color 0.3s;
+    position: relative;
+}
+
+nav .liens a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--or);
+    transition: width 0.3s;
+}
+
+nav .liens a:hover::after {
+    width: 100%;
+}
+
+nav .liens a:hover {
+    color: var(--or);
+}
+
+/* PAGE ACCUEIL - HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--blanc);
+    text-align: center;
+    padding: 180px 20px;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--or);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: var(--blanc);
+}
+
+.bouton {
+    background: linear-gradient(135deg, var(--or), var(--or-clair));
+    color: var(--noir);
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: inline-block;
+}
+
+.bouton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(244,169,13,0.5);
+}
+
+/* CARTES */
+.cartes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 40px;
+    flex-wrap: wrap;
+}
+
+.carte {
+    background: var(--blanc);
+    border-radius: 15px;
+    padding: 30px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid var(--or);
+}
+
+.carte:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.carte .icone {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.carte h3 {
+    color: var(--vert-fonce);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.carte p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* FORMULAIRE */
+.form-container {
+    background: linear-gradient(135deg, var(--vert-fonce), var(--vert-moyen));
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-container h1 {
+    color: var(--or);
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+label {
+    color: var(--or-clair);
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.95);
+    color: var(--vert-fonce);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--or);
+}
+
+button[type="submit"] {
+    background: linear-gradient(135deg, var(--or), var(--or-clair));
+    color: var(--noir);
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    width: 100%;
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(244,169,13,0.5);
+}
+
+/* TABLEAUX */
+.contenu {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--blanc);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+th {
+    background: linear-gradient(135deg, var(--vert-fonce), var(--vert-moyen));
+    color: var(--or);
+    padding:20px 15px;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #2d6a4f;  /* ← change la couleur */
+    color: #444;
+    font-size: 14px;
+}
+
+tr:hover td {
+    background-color: #f0faf4;
+    color: var(--vert-fonce);
+}
+
+/* TITRES */
+h1, h2 {
+    color: var(--vert-fonce);
+}
+
+h2 {
+    border-left: 5px solid var(--or);
+    padding-left: 15px;
+    margin-top: 60px;
+    font-size: 22px;
+}
+
+/* BOUTON LIEN */
+a.bouton-lien {
+    background: linear-gradient(135deg, var(--or), var(--or-clair));
+    color: var(--noir);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+    margin: 20px 0;
+    transition: transform 0.3s;
+}
+
+a.bouton-lien:hover {
+    transform: translateY(-2px);
+}
+
+/* PIED DE PAGE */
+footer {
+    background: linear-gradient(135deg, var(--vert-fonce), var(--noir));
+    color: var(--blanc);
+    text-align: center;
+    padding: 30px;
+    margin-top: 60px;
+}
+
+footer p {
+    color: var(--or-clair);
+    font-size: 14px;
+}

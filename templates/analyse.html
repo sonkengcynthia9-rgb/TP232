@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Analyses - Agricam</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <nav>
+            <span class="logo">🌾 AGRICAM</span>
+            <div class="liens">
+                <a href="/">Accueil</a>
+                <a href="/formulaire">Formulaire</a>
+                <a href="/donnees">Données</a>
+                <a href="/analyse">Analyses</a>
+            </div>
+        </nav>
+        <h1>Analyses des données agricoles</h1>
+        <br><br>
+        <h2>statistiques descriptives</h2>
+        <table border="1">
+            <tr>
+                <th>Indicteur</th>
+                <th>Valeur</th>
+            </tr>
+            <tr>
+                <td>Rendement moyen(kg/ha)</td>
+                <td>{{ stats.rendement_moyen}}</td>
+            </tr>
+            <tr>
+                <td>Revenu moyen(FCFA)</td>
+                <td>{{ stats.revenu_moyen}}</td>
+            </tr>
+            <tr>
+                <td>Surface moyenne(ha)</td>
+                <td>{{ stats.surface_moyenne}}</td>
+            </tr>
+            <tr>
+                <td>Perte moyenne(%)</td>
+                <td>{{ stats.perte_moyenne}}</td>
+            </tr>
+            <tr>
+                <td>Rendement maximun(kg/ha)</td>
+                <td>{{ stats.max_rendement}}</td>
+            </tr>
+            <tr>
+                <td>Rendement minimun(kg/ha)</td>
+                <td>{{ stats.min_rendement}}</td>
+            </tr>
+            <tr>
+                <td>Revenu maximun(FCFA)</td>
+                <td>{{ stats.max_revenu}}</td>
+            </tr>
+            <tr>
+                <td>Revenu minimun(FCFA)</td>
+                <td>{{ stats.min_revenu}}</td>
+            </tr>
+        </table>
+
+        <h3>Régression linéaire simple</h3>
+        <p>Variable X : Surface exploitée (ha)</p>
+        <p>Variable Y : Rendement (kg/ha)</p>
+
+        <table border="1">
+            <tr>
+                <th>Résultat</th>
+                <th>Valeur</th>
+            </tr>
+            <tr>
+                <td>Coefficient (pente)</td>
+                <td>{{ regression.coefficient }}</td>
+            </tr>
+            <tr>
+                <td>Ordonnée à l'origine</td>
+                <td>{{ regression.intercept }}</td>
+            </tr>
+            <tr>
+                <td>Score du modèle (R²)</td>
+                <td>{{ regression.score }}</td>
+            </tr>
+        </table>
+        <h2>Régression linéaire multiple</h2>
+        <p>X1 = Surface, X2 = Perte, X3 = Engrais</p>
+        <p>Y = Rendement</p>
+
+        <table border="1">
+            <tr>
+                <th>Résultat</th>
+                <th>Valeur</th>
+            </tr>
+            <tr>
+                <td>Score du modèle (R²)</td>
+                <td>{{ regression_multiple.score }}</td>
+            </tr>
+            <tr>
+                <td>Coefficient Surface</td>
+                <td>{{ regression_multiple.coef_surface }}</td>
+            </tr>
+            <tr>
+                <td>Coefficient Perte</td>
+                <td>{{ regression_multiple.coef_perte }}</td>
+            </tr>
+            <tr>
+                <td>Coefficient Engrais</td>
+                <td>{{ regression_multiple.coef_engrais }}</td>
+            </tr>
+        </table>
+        <h2>Classification non supervisée (KMeans)</h2>
+        <p>Les agriculteurs sont regroupés en 3 groupes similaires</p>
+
+        <table border="1">
+            <tr>
+                <th>Région</th>
+                <th>Culture</th>
+                <th>Groupe</th>
+            </tr>
+            {% for a in groupes %}
+            <tr>
+                <td>{{ a.region }}</td>
+                <td>{{ a.culture }}</td>
+                <td>Groupe {{ a.groupe + 1 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>Classification supervisée</h2>
+        <p>Prédiction de l'accès au crédit selon surface, rendement et revenu</p>
+
+        <table border="1">
+            <tr>
+                <th>Indicateur</th>
+                <th>Valeur</th>
+            </tr>
+            <tr>
+                <td>Score du modèle</td>
+                <td>{{ score_classification }}</td>
+            </tr>
+        </table>
+        <h2>Réduction de dimensionnalité (PCA)</h2>
+        <p>Les 10 variables réduites en 2 composantes principales</p>
+
+        <table border="1">
+            <tr>
+                <th>Composante</th>
+                <th>Variance expliquée</th>
+            </tr>
+            <tr>
+                <td>Composante 1</td>
+                <td>{{ variance[0] }}</td>
+            </tr>
+            <tr>
+                <td>Composante 2</td>
+                <td>{{ variance[1] }}</td>
+            </tr>
+        </table>
+
+        <img src="data:image/png;base64,{{ graphique }}" 
+            alt="Graphique régression" 
+        width="600">
+        <h2>Graphique de régression linéaire</h2>
+        
+        <h2>📊 Rendement moyen par région</h2>
+        <img src="data:image/png;base64,{{ histogramme }}" 
+            alt="Histogramme" 
+            width="600">
+
+        <h2> Répartition des obstacles</h2>
+        <img src="data:image/png;base64,{{ camembert }}" 
+            alt="Diagramme circulaire" 
+            width="500">
+                
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Données-AgriCam</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+     <nav>
+            <span class="logo">🌾 AGRICAM</span>
+            <div class="liens">
+                <a href="/">Accueil</a>
+                <a href="/formulaire">Formulaire</a>
+                <a href="/donnees">Données</a>
+                <a href="/analyse">Analyses</a>
+            </div>
+            </nav>   
+        <h1>Données collectées</h1>
+        <a href="/formulaire" class="bouton">Ajouter une reponse </a>
+        <br></br>
+        <table border="1"> 
+            <tr>
+                <th>Region</th>
+                <th>culture</th>
+                <th>surface</th>
+                <th>Rendement</th>
+                <th>obstacles </th>
+                <th>credit</th>
+                <th>engrais</th>
+                <th>transport</th>
+                <th>perte(%)</th>
+                <th>Revenu(FCFA)</th>
+            </tr>
+            {% for ligne in donnees %}
+            <tr>
+                <td>{{ ligne[1]}}</td>
+                <td>{{ ligne[2]}}</td>
+                <td>{{ ligne[3]}}</td>
+                <td>{{ ligne[4]}}</td>
+                <td>{{ ligne[5]}}</td>
+                <td>{{ ligne[6]}}</td>
+                <td>{{ ligne[7]}}</td>
+                <td>{{ ligne[8]}}</td>
+                <td>{{ ligne[9]}}</td>
+                <td>{{ ligne[10]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </body>
+</html>

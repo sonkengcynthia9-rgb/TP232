@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulaire - AgriCam</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <nav>
+            <span class="logo">🌾 AGRICAM</span>
+            <div class="liens">
+                <a href="/">Accueil</a>
+                <a href="/formulaire">Formulaire</a>
+                <a href="/donnees">Données</a>
+                <a href="/analyse">Analyses</a>
+            </div>
+        </nav>
+        <div class="form-container">
+        <h1>Collecte de données agricoles</h1>
+            <form action="/donnees" method="POST">
+                <label>Region:</label>
+                <select name="region" >
+                    <option >Selctionnez une région</option>
+                    <option >Nord</option>
+                    <option >Sud</option>
+                    <option >Est</option>
+                    <option >Ouest</option>
+                    <option >Centre</option>
+                    <option >Littoral</option>
+                    <option >Extreme-Nord</option>
+                    <option >Adamaoua</option>
+                    <option >Nord-Ouest</option>
+                    <option >Sud-Ouest</option>
+                </select>
+                <br><br>
+                <label>Type de culture:</label>
+                <input type="text" name="culture" placehorlder="EX:Mais" >
+                <br><br>
+                <label>Surface exploitée(ha):</label>
+                <input type="number" name="surface" placeholder="En hectares" >
+                <br><br>
+                <label>Rendement(kg/ha):</label>
+                <input type="number" name="rendement" >
+                <br><br>
+                <label>Principal obstacle:</label>
+                <select name="obstacle">
+                    <option >Financement</option>
+                    <option >Mecanisation</option>
+                    <option >Transport</option>
+                    <option >Insecurité</option>
+                </select>
+                    
+                <br><br>
+                <label >Acces au crédit</label>
+                <select name="credit">
+                    <option >Oui</option>
+                    <option >Non</option>
+                </select>
+                <br><br>
+                <label >Utilisation d'engrais</label>
+                <select name="engrais">
+                    <option >Oui</option>
+                    <option >Non</option>
+                </select>
+                <br><br>
+                <label >Mode de transport</label>
+                <select name="transport">
+                    <option >Route praticable</option>
+                    <option >Piste</option>
+                    <option >Aucun</option>
+                </select>
+                <br><br> 
+                <label >Perte post-recolte(%)</label>
+                <input type="number" name="perte">
+                <br><br>
+                <label >Revenu mensuel(FCFA)</label>
+                <input type="number" name="revenu">
+                <br><br>
+
+
+
+                <button type="submit" > Envoyer</button>
+
+
+                
+            </form>
+        </div>
+        
+    </body>
+</html>
