@@ -1,6 +1,5 @@
 requests
 flask
-sqlite3
 matplotblib
 io
 base64
